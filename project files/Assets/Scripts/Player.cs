@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    public Transform FirePoint;
+
     [SerializeField] float _moveSpeed = 5;
     [SerializeField] float _xRange = 8;
     [SerializeField] float _yRange = 4;
+    [SerializeField] GameObject _projectilePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        FireShot();
     }
 
     private void Movement()
@@ -45,6 +50,14 @@ public class PlayerController : MonoBehaviour
         if(transform.position.y > _yRange)
         {
             transform.position = new Vector2(transform.position.x, _yRange);
+        }
+    }
+
+    private void FireShot()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(_projectilePrefab, FirePoint.transform.position, _projectilePrefab.transform.rotation);
         }
     }
 }
