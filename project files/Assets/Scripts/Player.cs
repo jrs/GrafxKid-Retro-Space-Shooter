@@ -10,11 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField] float _xRange = 8;
     [SerializeField] float _yRange = 4;
     [SerializeField] GameObject _projectilePrefab;
+    private Animator _playerAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,11 @@ public class Player : MonoBehaviour
     {
         Movement();
         FireShot();
+    }
+
+    void FixedUpdate()
+    {
+        
     }
 
     private void Movement()
@@ -50,6 +56,18 @@ public class Player : MonoBehaviour
         if(transform.position.y > _yRange)
         {
             transform.position = new Vector2(transform.position.x, _yRange);
+        }
+
+        if(horizontalInput > 0)
+        {
+            _playerAnim.SetInteger("TurnDirection", 1);
+        }
+        else if(horizontalInput < 0)
+        {
+            _playerAnim.SetInteger("TurnDirection", -1);
+        }
+        else{
+            _playerAnim.SetInteger("TurnDirection", 0);
         }
     }
 
