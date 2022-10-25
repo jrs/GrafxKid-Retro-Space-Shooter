@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+        Vector2 direction = new Vector2(horizontalInput, verticalInput);
 
-        transform.Translate(Vector2.right * horizontalInput * _moveSpeed * Time.deltaTime);
-        transform.Translate(Vector2.up * verticalInput * _moveSpeed * Time.deltaTime);
+        transform.Translate(direction * _moveSpeed * Time.deltaTime);
 
         if(transform.position.x < -_xRange)
         {
@@ -58,17 +58,19 @@ public class Player : MonoBehaviour
             transform.position = new Vector2(transform.position.x, _yRange);
         }
 
-        if(horizontalInput > 0)
+        if (horizontalInput > 0)
         {
             _playerAnim.SetInteger("TurnDirection", 1);
         }
-        else if(horizontalInput < 0)
+        else if (horizontalInput < 0)
         {
             _playerAnim.SetInteger("TurnDirection", -1);
         }
-        else{
+        else
+        {
             _playerAnim.SetInteger("TurnDirection", 0);
         }
+
     }
 
     private void FireShot()
