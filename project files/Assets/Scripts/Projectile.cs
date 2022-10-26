@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float _speed = 10;
+    public float Speed = 10;
+    public GameObject Explosion;
+    public Vector3 SpawnPos;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +17,15 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.up * _speed * Time.deltaTime);
+        transform.Translate(Vector2.up * Speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            Instantiate(Explosion, transform.position + SpawnPos, Explosion.transform.rotation);
+        }
     }
 
     private void OnBecameInvisible()

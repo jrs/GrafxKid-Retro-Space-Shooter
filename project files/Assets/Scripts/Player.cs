@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform FirePoint;
-
     [SerializeField] float _moveSpeed = 5;
-    [SerializeField] float _xRange = 8;
-    [SerializeField] float _yRange = 4;
-    [SerializeField] GameObject _projectilePrefab;
+    [SerializeField] int _playerHealth = 10;
+    [SerializeField] bool _isPlayerAlive = true;  
+    public Transform FirePoint;
+    public Animator PlayerBooter;
+    public GameObject ProjectilePrefab;
+    private float _xRange = 8;
+    private float _yRange = 4;
     private Animator _playerAnim;
 
     // Start is called before the first frame update
     void Start()
     {
+        _isPlayerAlive = true;
         _playerAnim = GetComponent<Animator>();
     }
 
@@ -32,8 +35,8 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
         Vector2 direction = new Vector2(horizontalInput, verticalInput);
 
         transform.Translate(direction * _moveSpeed * Time.deltaTime);
@@ -61,14 +64,17 @@ public class Player : MonoBehaviour
         if (horizontalInput > 0)
         {
             _playerAnim.SetInteger("TurnDirection", 1);
+            PlayerBooter.SetInteger("BoostDirection", 1);
         }
         else if (horizontalInput < 0)
         {
             _playerAnim.SetInteger("TurnDirection", -1);
+             PlayerBooter.SetInteger("BoostDirection", -1);
         }
         else
         {
             _playerAnim.SetInteger("TurnDirection", 0);
+             PlayerBooter.SetInteger("BoostDirection", 0);
         }
 
     }
@@ -77,7 +83,19 @@ public class Player : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Instantiate(_projectilePrefab, FirePoint.transform.position, _projectilePrefab.transform.rotation);
+            Instantiate(ProjectilePrefab, FirePoint.transform.position, ProjectilePrefab.transform.rotation);
+        }
+    }
+
+    public void UpdatePlayerHealth(int amount)
+    {
+        if(_playerHealth > 0)
+        {
+            _playerHealth-= amount;
+        }
+        else
+        {
+            Debug.Log("Player is out of health.");
         }
     }
 }
