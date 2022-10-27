@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed = 5;
-    [SerializeField] int _playerHealth = 10;
-    [SerializeField] bool _isPlayerAlive = true;  
     public Transform FirePoint;
     public Animator PlayerBooter;
     public GameObject ProjectilePrefab;
+    public GameObject ExplosionPrefab;
+
+    [SerializeField] float _moveSpeed = 5;
+    [SerializeField] int _playerHealth = 10;
+    
     private float _xRange = 8;
     private float _yRange = 4;
     private Animator _playerAnim;
@@ -17,7 +19,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _isPlayerAlive = true;
         _playerAnim = GetComponent<Animator>();
     }
 
@@ -26,11 +27,6 @@ public class Player : MonoBehaviour
     {
         Movement();
         FireShot();
-    }
-
-    void FixedUpdate()
-    {
-        
     }
 
     private void Movement()
@@ -69,12 +65,12 @@ public class Player : MonoBehaviour
         else if (horizontalInput < 0)
         {
             _playerAnim.SetInteger("TurnDirection", -1);
-             PlayerBooter.SetInteger("BoostDirection", -1);
+            PlayerBooter.SetInteger("BoostDirection", -1);
         }
         else
         {
             _playerAnim.SetInteger("TurnDirection", 0);
-             PlayerBooter.SetInteger("BoostDirection", 0);
+            PlayerBooter.SetInteger("BoostDirection", 0);
         }
 
     }
@@ -96,6 +92,22 @@ public class Player : MonoBehaviour
         else
         {
             Debug.Log("Player is out of health.");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
+            if(_playerHealth > 1)
+            {
+                UpdatePlayerHealth(1);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }
