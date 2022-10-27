@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4526797367443570829}
   - component: {fileID: 4526797367443570828}
   - component: {fileID: 4526797367443570827}
+  - component: {fileID: -2385933585581504184}
   m_Layer: 0
   m_Name: Enemy One
   m_TagString: Enemy
@@ -73,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1258061635
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: -323960447, guid: 8922fdc987c884256b46b33cfe93af14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff2ceaee42de47dbb1ad84e905e8248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
-  Damage: 1
   Health: 3
+  EnemyProjectile: {fileID: 4964952198263666973, guid: 947a838238f8d4816a772037d8df4b81, type: 3}
+--- !u!114 &-2385933585581504184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526797367443570833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eab04b6c0f4854e9e564232b3f4c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 3

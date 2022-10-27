@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float MoveSpeed = 1;
-    public int Damage = 1;
     public int Health = 3;
+    public GameObject EnemyProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("FireProjectile", 0.5f, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * MoveSpeed * Time.deltaTime);
+        
+    }
+
+    private void FireProjectile()
+    {
+        Instantiate(EnemyProjectile, transform.position, EnemyProjectile.transform.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

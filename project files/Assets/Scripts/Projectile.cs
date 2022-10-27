@@ -5,8 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Speed = 10;
-    public GameObject Explosion;
-    public Vector3 SpawnPos;
+    public GameObject ExplosionFX;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,7 @@ public class Projectile : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
-            Instantiate(Explosion, transform.position + SpawnPos, Explosion.transform.rotation);
+            Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation);
         }
     }
 

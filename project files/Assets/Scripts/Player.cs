@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player is out of health.");
+            Destroy(this.gameObject);
         }
     }
 
@@ -100,14 +100,7 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
-            if(_playerHealth > 1)
-            {
-                UpdatePlayerHealth(1);
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            UpdatePlayerHealth(1);
         }
     }
 }
