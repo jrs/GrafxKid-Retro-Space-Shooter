@@ -493,6 +493,7 @@ MonoBehaviour:
   PlayerBooter: {fileID: 1102081015}
   ProjectilePrefab: {fileID: 7423777171439871442, guid: f5035d5c0034e45e49657a9d35180c17, type: 3}
   ExplosionPrefab: {fileID: 3397685966657399611, guid: 73a4c577e5d3d874299b4dd71c0a56f9, type: 3}
+  PlayerCanMove: 0
   _moveSpeed: 8
   _playerHealth: 10
 --- !u!212 &1523677444
@@ -555,7 +556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523677442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -7.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
