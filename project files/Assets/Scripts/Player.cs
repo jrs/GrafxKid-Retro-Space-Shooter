@@ -30,12 +30,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float step = 1f * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, target, step);
-        if(transform.position.y == 0)
-        {
-            PlayerCanMove = true;
-        }
+        //float step = 1f * Time.deltaTime;
+        PlayerCanMove = true;
+        //transform.position = Vector2.MoveTowards(transform.position, target, step);
+        //if(transform.position.y == 0)
+        //{
+        //    PlayerCanMove = true;
+        //}
         Movement();
         FireShot();
     } 
