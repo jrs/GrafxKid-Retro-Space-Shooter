@@ -16,29 +16,31 @@ public class Player : MonoBehaviour
     private float _xRange = 8;
     private float _yRange = 4;
     private Animator _playerAnim;
-    private Vector2 target;
+    private Vector2 target = new Vector2(0.0f, -2.5f);
     private Vector2 position;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerAnim = GetComponent<Animator>();
-        target = new Vector2(0.0f, 0.0f);
-        position = gameObject.transform.position;
+        //position = gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //float step = 1f * Time.deltaTime;
-        PlayerCanMove = true;
-        //transform.position = Vector2.MoveTowards(transform.position, target, step);
-        //if(transform.position.y == 0)
-        //{
-        //    PlayerCanMove = true;
-        //}
         Movement();
         FireShot();
+        float step = 1f * Time.deltaTime;
+        
+        if(!PlayerCanMove && transform.position.y < -2.5f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
+        }
+        else
+        {
+            PlayerCanMove = true;
+        }
     } 
 
     private void Movement()
@@ -125,5 +127,4 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
 }
