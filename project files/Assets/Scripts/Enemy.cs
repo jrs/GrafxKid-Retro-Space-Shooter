@@ -5,11 +5,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int Health = 3;
+    public int Value = 1;
     public GameObject EnemyProjectile;
+
+    private GameManager _gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         InvokeRepeating("FireProjectile", 0.5f, 2);
     }
 
@@ -36,6 +40,7 @@ public class Enemy : MonoBehaviour
 
             else
             {
+                _gameManager.UpdateScore(Value);
                 Destroy(this.gameObject);
             }
         }

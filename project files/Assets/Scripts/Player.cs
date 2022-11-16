@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     private Animator _playerAnim;
     private Vector2 target = new Vector2(0.0f, -2.5f);
     private Vector2 position;
+    private GameManager _gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         _playerAnim = GetComponent<Animator>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         //position = gameObject.transform.position;
     }
 
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour
 
     private void FireShot()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && PlayerCanMove)
         {
             Instantiate(ProjectilePrefab, FirePoint.transform.position, ProjectilePrefab.transform.rotation);
         }
@@ -117,13 +119,15 @@ public class Player : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
-            UpdatePlayerHealth(1);
+            //UpdatePlayerHealth(1);
+            _gameManager.UpdatePlayerLives(1);
         }
 
         if(other.CompareTag("Enemy Projectile"))
         {
             Instantiate(ExplosionPrefab, transform.position, ExplosionPrefab.transform.rotation);
-            UpdatePlayerHealth(1);
+            //UpdatePlayerHealth(1);
+            _gameManager.UpdatePlayerLives(1);
             Destroy(other.gameObject);
         }
     }

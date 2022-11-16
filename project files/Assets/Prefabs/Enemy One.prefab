@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 3
+  Value: 10
   EnemyProjectile: {fileID: 4964952198263666973, guid: 947a838238f8d4816a772037d8df4b81, type: 3}
 --- !u!114 &-2385933585581504184
 MonoBehaviour:
