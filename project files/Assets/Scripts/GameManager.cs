@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         _isGameActive = true;
-        PlayerLives = 3;
+        PlayerLives = 9;
         Score = 0;
     }
 
@@ -47,6 +47,6 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerLives(int amount)
     {
-        PlayerLivesText.text = (PlayerLives -= amount).ToString(); 
+        PlayerLivesText.text = "<sprite=" + (PlayerLives -= amount).ToString() + ">"; 
     }
 }
