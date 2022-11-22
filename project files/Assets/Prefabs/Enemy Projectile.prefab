@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4964952198263666970}
   - component: {fileID: 7433843104683333217}
   - component: {fileID: 1729751010725480118}
-  - component: {fileID: 1312624723262510281}
+  - component: {fileID: -3796284022013452310}
   m_Layer: 0
   m_Name: Enemy Projectile
   m_TagString: Enemy Projectile
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964952198263666973}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &4964952198263666970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.21
---- !u!114 &1312624723262510281
+--- !u!114 &-3796284022013452310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4964952198263666973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15eab04b6c0f4854e9e564232b3f4c96, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e2e93651324d41cdae66034fb526585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  Speed: 5
+  ExplosionFX: {fileID: 3397685966657399611, guid: 73a4c577e5d3d874299b4dd71c0a56f9, type: 3}

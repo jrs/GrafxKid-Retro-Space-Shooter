@@ -50,5 +50,5 @@ public class Enemy : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(this.gameObject);
-    }
+    }       
 }
