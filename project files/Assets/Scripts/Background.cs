@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    public float UpperBounds = 11f;
-    public float LowerBounds = -22f;
+    [SerializeField] float _upperBounds = 11f;
+    [SerializeField] float _lowerBounds = -22f;
+    [SerializeField] float _moveSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,11 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < LowerBounds)
+        transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime);
+
+        if (transform.position.y < _lowerBounds)
         {
-            transform.position = new Vector2(transform.position.x, UpperBounds);
+            transform.position = new Vector2(transform.position.x, _upperBounds);
         }
     }
 }

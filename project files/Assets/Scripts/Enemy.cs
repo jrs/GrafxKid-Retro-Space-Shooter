@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int Health = 3;
-    public int Value = 1;
+    [SerializeField] float _moveSpeed = 1;
+    [SerializeField] int _health = 3;
+    [SerializeField] int _value = 10;
     public GameObject EnemyProjectile;
+    public GameObject ExplosionFX;
 
     private GameManager _gameManager;
 
@@ -14,41 +16,61 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        InvokeRepeating("FireProjectile", 0.5f, 2);
+        //InvokeRepeating("FireProjectile", 0.5f, 2);
+        StartCoroutine(FireProjectile());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_gameManager.IsGameAcitve())
+            transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime);
     }
 
-    private void FireProjectile()
-    {
-        Instantiate(EnemyProjectile, transform.position, EnemyProjectile.transform.rotation);
-    }
+    //void FireProjectile()
+    //{
+    //    Instantiate(EnemyProjectile, transform.position, EnemyProjectile.transform.rotation);
+    //}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Projectile"))
         {
-            if (Health > 1)
+            if (_health > 1)
             {
-                Destroy(other.gameObject);
-                Health--;
+                _health--;
             }
 
             else
             {
-                _gameManager.UpdateScore(Value);
+                _gameManager.UpdateScore(_value);
                 Destroy(this.gameObject);
             }
         }
 
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Instantiate(ExplosionFX, other.transform.position, ExplosionFX.transform.rotation);
+        }
+
     }
 
-    private void OnBecameInvisible()
+    void OnBecameInvisible()
     {
         Destroy(this.gameObject);
-    }       
+    }
+
+    IEnumerator FireProjectile()
+    {
+        float delayTime = Random.Range(0, 3);
+        int spawnRate = Random.Range(0, 4);
+
+        yield return new WaitForSeconds(0.5f);
+
+        for(int i = 0; i < spawnRate; i++)
+        {
+            Instantiate(EnemyProjectile, transform.position, EnemyProjectile.transform.rotation);
+            yield return new WaitForSeconds(delayTime);
+        }
+    }
 }

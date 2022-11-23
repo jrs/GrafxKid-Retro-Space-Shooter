@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ScoreText.text = Score.ToString();
+        PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
     }
 
     // Update is called once per frame
@@ -44,8 +45,8 @@ public class GameManager : MonoBehaviour
         _isGameActive = true;
         PlayerLives = 3;
         Score = 0;
-        ScoreText.text = Score.ToString();
-        PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
+        //ScoreText.text = Score.ToString();
+        //PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
         StartCoroutine(EnemySpawner());
     }
 

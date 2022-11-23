@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public Transform FirePoint;
     public Animator PlayerBooter;
     public GameObject ProjectilePrefab;
-    public GameObject ExplosionPrefab;
     [SerializeField] float _moveSpeed = 5;
         
     private float _xRange = 8;

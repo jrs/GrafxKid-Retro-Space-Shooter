@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 486479585990642065}
   - component: {fileID: 486479585990642066}
   - component: {fileID: 486479585990642067}
-  - component: {fileID: 2921529003740695171}
   m_Layer: 0
   m_Name: Enemy Two
   m_TagString: Enemy
@@ -146,18 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff2ceaee42de47dbb1ad84e905e8248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
+  _moveSpeed: 2
+  _health: 3
+  _value: 10
   EnemyProjectile: {fileID: 4964952198263666973, guid: 947a838238f8d4816a772037d8df4b81, type: 3}
---- !u!114 &2921529003740695171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486479585990642077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15eab04b6c0f4854e9e564232b3f4c96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 3
+  ExplosionFX: {fileID: 3397685966657399611, guid: 73a4c577e5d3d874299b4dd71c0a56f9, type: 3}

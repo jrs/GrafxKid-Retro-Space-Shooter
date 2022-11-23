@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
-    public float Speed = 10;
-    public GameObject ExplosionFX;
+    [SerializeField] float _speed = 10;
+    [SerializeField] GameObject _explosionFX;
 
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,15 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.up * Speed * Time.deltaTime);
+        transform.Translate(Vector2.up * _speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Enemy"))
         {
-            Instantiate(ExplosionFX, transform.position, ExplosionFX.transform.rotation);
+            Instantiate(_explosionFX, transform.position, _explosionFX.transform.rotation);
+            Destroy(this.gameObject);
         }
     }
 

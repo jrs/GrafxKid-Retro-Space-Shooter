@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6541a9da68c24257844149616707d4a
+guid: 5ae8c8135aae64858ba92b2b785150b7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,15 +116,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Power_+_charge_bars (full + empty) (32 x 16)_0
+      name: pwr slider fill
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 16
+        x: 4
+        y: 7
+        width: 23
+        height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -137,15 +137,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Power_+_charge_bars (full + empty) (32 x 16)_1
+      name: pwr background
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 16
+        x: 36
+        y: 7
+        width: 24
+        height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,6 +153,90 @@ TextureImporter:
       bones: []
       spriteID: 229311e9932eee843b07d53d524a3b64
       internalID: 1545089953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: missile slider fill
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 3
+        width: 15
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cdabfff6e6bd4e8b9a8285b5363994a
+      internalID: -1863365205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pwr slider handle
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 7
+        width: 1
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ef899515821430c89bcf0e37186899
+      internalID: -1801843655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: missile slide handle
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 3
+        width: 2
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b67c9f3dd52e04f31bd76ed35ad6201e
+      internalID: 249189722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: missile background
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 3
+        width: 17
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3e3a1b1cb394e24af2a99976c4ec9c
+      internalID: 1523166943
       vertices: []
       indices: 
       edges: []
@@ -168,8 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Power_+_charge_bars (full + empty) (32 x 16)_1: 1545089953
-      Power_+_charge_bars (full + empty) (32 x 16)_0: 1242604776
+      pwr slider handle: -1801843655
+      missile slider fill: -1863365205
+      pwr background: 1545089953
+      missile background: 1523166943
+      pwr slider fill: 1242604776
+      missile slide handle: 249189722
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
