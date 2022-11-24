@@ -105,5 +105,11 @@ public class Player : MonoBehaviour
                 _coolDownTimer = _waitTimer;
             }
         }
+
+        if(other.gameObject.CompareTag("Power"))
+        {
+            _gameManager.UpdatePlayerPower(1);
+            Destroy(other.gameObject);
+        }
     }
 }

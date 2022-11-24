@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Projectile
   - Enemy Projectile
+  - Power
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -15,9 +16,13 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI PlayerLivesText;
+    public Slider PowerSlider;
 
     [Header("Player Info")]
-    public int PlayerLives;
+    public int PlayerLives = 3;
+    public int PlayerPower = 10;
+    public int PlayerPowerAmount = 10;
+    public GameObject PlayerPowerupPrefab;
 
     [Header("Enemy Info")]
     public GameObject[] EnemyPrefabs;
@@ -33,7 +38,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerLives <= 0)
+        if (PlayerLives <= 0 || PlayerPowerAmount <= 0) 
         {
             GameOver();
         }
@@ -43,11 +48,12 @@ public class GameManager : MonoBehaviour
     {
         StartText.SetActive(false);
         _isGameActive = true;
-        PlayerLives = 3;
-        Score = 0;
+        //PlayerLives = 3;
+        //Score = 0;
         //ScoreText.text = Score.ToString();
         //PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
         StartCoroutine(EnemySpawner());
+        StartCoroutine(PowerCountDownTimer());
     }
 
     public bool IsGameAcitve()
@@ -72,11 +78,30 @@ public class GameManager : MonoBehaviour
         PlayerLivesText.text = "<sprite=" + (PlayerLives -= amount).ToString() + ">"; 
     }
 
-    // Enemy Methods
+    public void UpdatePlayerPower(int amount)
+    {
+        if (PlayerPower > PlayerPowerAmount)
+        {
+            PlayerPowerAmount += amount;
+            SetPowerSlider(PlayerPowerAmount);
+        }
+    }
+
+    void SetPowerSlider(int amount)
+    {
+        PowerSlider.value = amount;
+    }
+
+    private void SpawnPlayerPowerPrefab()
+    {
+        Vector2 spawnPos = new Vector2(Random.Range(-_xRange, _xRange), transform.position.y);
+        Instantiate(PlayerPowerupPrefab, spawnPos, PlayerPowerupPrefab.transform.rotation);
+    }
+
     private void SpawnRandomEnemyPrefab()
     {
         int index = Random.Range(0, EnemyPrefabs.Length);
-        Vector2 spawnPos = new Vector2(Random.Range(-_xRange, _xRange), transform.position.y + 6);
+        Vector2 spawnPos = new Vector2(Random.Range(-_xRange, _xRange), transform.position.y);
 
         Instantiate(EnemyPrefabs[index], spawnPos, EnemyPrefabs[index].transform.rotation);
     }
@@ -87,6 +112,17 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             SpawnRandomEnemyPrefab();
+            SpawnPlayerPowerPrefab();
+        }
+    }
+
+    IEnumerator PowerCountDownTimer()
+    {
+        while(_isGameActive)
+        {
+            yield return new WaitForSeconds(5);
+            PlayerPowerAmount--;
+            SetPowerSlider(PlayerPowerAmount);
         }
     }
 
