@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Config")]
     [SerializeField] private bool _isGameActive;
     public int Score;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _mainTrack;
 
     [Header("Game UI")]
     public GameObject StartText;
@@ -48,11 +50,14 @@ public class GameManager : MonoBehaviour
     {
         StartText.SetActive(false);
         _isGameActive = true;
+        _audioSource.clip = _mainTrack;
+        _audioSource.Play();
         //PlayerLives = 3;
         //Score = 0;
         //ScoreText.text = Score.ToString();
         //PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
         StartCoroutine(EnemySpawner());
+        StartCoroutine(PowerSpawner());
         StartCoroutine(PowerCountDownTimer());
     }
 
@@ -112,6 +117,15 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             SpawnRandomEnemyPrefab();
+        }
+    }
+
+    IEnumerator PowerSpawner()
+    {
+        while(_isGameActive)
+        {
+            float timeToWait = Random.Range(5, 8);
+            yield return new WaitForSeconds(timeToWait);
             SpawnPlayerPowerPrefab();
         }
     }
@@ -120,7 +134,7 @@ public class GameManager : MonoBehaviour
     {
         while(_isGameActive)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
             PlayerPowerAmount--;
             SetPowerSlider(PlayerPowerAmount);
         }
