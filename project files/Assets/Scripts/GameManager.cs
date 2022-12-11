@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +15,8 @@ public class GameManager : MonoBehaviour
     [Header("Game UI")]
     public GameObject StartText;
     public GameObject GameOverText;
-    public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI PlayerLivesText;
+    public Text ScoreText;
+    public Text PlayerLivesText;
     public Slider PowerSlider;
 
     [Header("Player Info")]
@@ -80,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerLives(int amount)
     {
-        PlayerLivesText.text = "<sprite=" + (PlayerLives -= amount).ToString() + ">"; 
+        PlayerLivesText.text = (PlayerLives -= amount).ToString(); 
     }
 
     public void UpdatePlayerPower(int amount)
@@ -134,7 +133,7 @@ public class GameManager : MonoBehaviour
     {
         while(_isGameActive)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
             PlayerPowerAmount--;
             SetPowerSlider(PlayerPowerAmount);
         }
