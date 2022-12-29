@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Config")]
     [SerializeField] private bool _isGameActive;
-    public int Score;
+    [SerializeField] private int _score;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _mainTrack;
 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText.text = Score.ToString();
+        ScoreText.text = _score.ToString();
         PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
     }
 
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int amount)
     {
-        ScoreText.text = (Score += amount).ToString();
+        ScoreText.text = (_score += amount).ToString();
     }
 
     public void UpdatePlayerLives(int amount)

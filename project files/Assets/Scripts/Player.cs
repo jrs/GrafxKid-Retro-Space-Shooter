@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Config")]
     public Transform FirePoint;
     public Animator PlayerBooter;
     public GameObject ProjectilePrefab;
     [SerializeField] float _moveSpeed = 5;
-        
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _laserShot, _armorOn, _powerPickup;
+
     private float _xRange = 8;
     private float _yRange = 4;
     private Animator _playerAnim;
@@ -89,9 +92,10 @@ public class Player : MonoBehaviour
 
     private void FireShot()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1"))
         {
             Instantiate(ProjectilePrefab, FirePoint.transform.position, ProjectilePrefab.transform.rotation);
+            _audioSource.PlayOneShot(_laserShot);
         }
     }
 
@@ -109,6 +113,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Power"))
         {
             _gameManager.UpdatePlayerPower(1);
+            _audioSource.PlayOneShot(_powerPickup);
             Destroy(other.gameObject);
         }
     }
