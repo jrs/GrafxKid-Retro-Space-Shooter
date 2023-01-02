@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool _isGameActive;
     [SerializeField] private int _score;
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _mainTrack;
+    [SerializeField] AudioClip _mainTrack, _gameOverTrack;
 
     [Header("Game UI")]
     public GameObject StartText;
@@ -51,10 +51,6 @@ public class GameManager : MonoBehaviour
         _isGameActive = true;
         _audioSource.clip = _mainTrack;
         _audioSource.Play();
-        //PlayerLives = 3;
-        //Score = 0;
-        //ScoreText.text = Score.ToString();
-        //PlayerLivesText.text = "<sprite=" + PlayerLives.ToString() + ">";
         StartCoroutine(EnemySpawner());
         StartCoroutine(PowerSpawner());
         StartCoroutine(PowerCountDownTimer());
@@ -68,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _isGameActive = false;
+        _audioSource.Stop();
         GameOverText.SetActive(true);
         StartCoroutine(RestartGame());
     }
