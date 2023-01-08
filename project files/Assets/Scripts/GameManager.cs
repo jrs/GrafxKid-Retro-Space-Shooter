@@ -39,10 +39,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerLives <= 0 || PlayerPowerAmount <= 0) 
-        {
-            GameOver();
-        }
+
     }
 
     public void StartGame()
@@ -65,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         _isGameActive = false;
         _audioSource.Stop();
+        _audioSource.clip = _gameOverTrack;
+        _audioSource.Play();
         GameOverText.SetActive(true);
         StartCoroutine(RestartGame());
     }
@@ -76,7 +75,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerLives(int amount)
     {
-        PlayerLivesText.text = (PlayerLives -= amount).ToString(); 
+        PlayerLivesText.text = (PlayerLives -= amount).ToString();
+
+        if(PlayerLives <= 0)
+        {
+            GameOver();
+        }
     }
 
     public void UpdatePlayerPower(int amount)
@@ -133,6 +137,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(5);
             PlayerPowerAmount--;
             SetPowerSlider(PlayerPowerAmount);
+
+            if (PlayerPowerAmount <= 0)
+            {
+                GameOver();
+            }
         }
     }
 
